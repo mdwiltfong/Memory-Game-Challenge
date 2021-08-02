@@ -12,6 +12,9 @@ const COLORS = [
   "orange",
   "purple"
 ];
+let i = 0;
+let firstCard;
+let secondCard;
 
 // here is a helper function to shuffle an array
 // it returns the same array with values shuffled
@@ -61,6 +64,27 @@ function createDivsForColors(colorArray) {
 function handleCardClick(event) {
   // you can use event.target to see which element was clicked
   console.log("you just clicked", event.target);
+  event.target.style.backgroundColor=event.target.classList;
+
+
+  if(i != 1){
+    firstCard=event.target;
+    i++
+  }else{
+    secondCard=event.target;
+    i=0;
+    if(firstCard.classList.value === secondCard.classList.value){
+      console.log(`Woah you got it! `)
+    }else{
+      console.log(`Ah, try again!`)
+      setTimeout(()=>{
+        firstCard.style.backgroundColor="transparent";
+        secondCard.style.backgroundColor="transparent";
+        console.log(`Flipped`)
+      },1000)
+    }
+      
+  }
 }
 
 // when the DOM loads
