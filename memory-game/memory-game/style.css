@@ -5,3 +5,12 @@
   margin: 10px;
   display: inline-block;
 }
+
+body{
+  background-color: blueviolet;
+}
+
+button{
+  margin-left: 50%;
+  margin-top: 12%;
+}
