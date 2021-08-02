@@ -72,12 +72,12 @@ function handleCardClick(event) {
     firstCard=event.target;
     firstCard.setAttribute('id','clicked');
     i++
+    console.log(i)
   }else{
     secondCard=event.target;
-    secondCard.setAttribute('id','clicked');
     i=0;
     if(firstCard.classList.value == secondCard.classList.value){
-      if(firstCard.getAttribute('id')!==secondCard.getAttribute('id')){
+      if(firstCard.getAttribute('id')==secondCard.getAttribute('id')){
       console.log(`You've clicked the same card twice. Try again!`)
       firstCard.style.backgroundColor="transparent";
       secondCard.style.backgroundColor="transparent";
