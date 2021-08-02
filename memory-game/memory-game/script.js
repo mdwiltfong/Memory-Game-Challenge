@@ -15,6 +15,7 @@ const COLORS = [
 let i = 0;
 let firstCard;
 let secondCard;
+let btn=document.querySelector("button");
 
 // here is a helper function to shuffle an array
 // it returns the same array with values shuffled
@@ -101,3 +102,9 @@ function handleCardClick(event) {
 
 // when the DOM loads
 createDivsForColors(shuffledColors);
+
+//restart button
+
+btn.addEventListener('click',()=>{
+  window.location.reload();
+})
