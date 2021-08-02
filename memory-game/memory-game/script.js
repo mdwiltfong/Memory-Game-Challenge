@@ -69,17 +69,29 @@ function handleCardClick(event) {
 
   if(i != 1){
     firstCard=event.target;
+    firstCard.setAttribute('id','clicked');
     i++
   }else{
     secondCard=event.target;
+    secondCard.setAttribute('id','clicked');
     i=0;
-    if(firstCard.classList.value === secondCard.classList.value){
-      console.log(`Woah you got it! `)
-    }else{
+    if(firstCard.classList.value == secondCard.classList.value){
+      if(firstCard.getAttribute('id')!==secondCard.getAttribute('id')){
+      console.log(`You've clicked the same card twice. Try again!`)
+      firstCard.style.backgroundColor="transparent";
+      secondCard.style.backgroundColor="transparent";
+        firstCard.removeAttribute('id');
+        secondCard.removeAttribute('id');
+      }else {
+        console.log(`Woah you got it! `)
+        
+      }}else{
       console.log(`Ah, try again!`)
       setTimeout(()=>{
         firstCard.style.backgroundColor="transparent";
         secondCard.style.backgroundColor="transparent";
+        firstCard.removeAttribute('id');
+        secondCard.removeAttribute('id');
         console.log(`Flipped`)
       },1000)
     }
