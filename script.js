@@ -15,8 +15,8 @@ const COLORS = [
 let i = 0;
 let firstCard;
 let secondCard;
-let btn=document.querySelector("button");
-
+let btn = document.querySelector("button");
+let clickedArray = [0];
 // here is a helper function to shuffle an array
 // it returns the same array with values shuffled
 // it is based on an algorithm called Fisher Yates if you want ot research more
@@ -46,16 +46,17 @@ let shuffledColors = shuffle(COLORS);
 // it creates a new div and gives it a class with the value of the color
 // it also adds an event listener for a click for each card
 function createDivsForColors(colorArray) {
+  let j = 0;
   for (let color of colorArray) {
     // create a new div
     const newDiv = document.createElement("div");
 
     // give it a class attribute for the value we are looping over
     newDiv.classList.add(color);
-
     // call a function handleCardClick when a div is clicked on
     newDiv.addEventListener("click", handleCardClick);
-
+    newDiv.setAttribute(`id`, `${j}`);
+    j++;
     // append the div to the element with an id of game
     gameContainer.append(newDiv);
   }
@@ -65,46 +66,82 @@ function createDivsForColors(colorArray) {
 function handleCardClick(event) {
   // you can use event.target to see which element was clicked
   console.log("you just clicked", event.target);
-  event.target.style.backgroundColor=event.target.classList;
 
-
-  if(i != 1){
-    firstCard=event.target;
-    firstCard.setAttribute('id','clicked');
-    i++
+  if (i < 2) {
+    event.target.style.backgroundColor = event.target.classList;
+    i++;
     console.log(i)
-  }else{
-    secondCard=event.target;
-    i=0;
-    if(firstCard.classList.value == secondCard.classList.value){
-      if(firstCard.getAttribute('id')==secondCard.getAttribute('id')){
-      console.log(`You've clicked the same card twice. Try again!`)
-      firstCard.style.backgroundColor="transparent";
-      secondCard.style.backgroundColor="transparent";
-        firstCard.removeAttribute('id');
-        secondCard.removeAttribute('id');
-      }else {
-        console.log(`Woah you got it! `)
-        
-      }}else{
-      console.log(`Ah, try again!`)
-      setTimeout(()=>{
-        firstCard.style.backgroundColor="transparent";
-        secondCard.style.backgroundColor="transparent";
-        firstCard.removeAttribute('id');
-        secondCard.removeAttribute('id');
-        console.log(`Flipped`)
-      },1000)
-    }
-      
+    event.target.style.id = `clicked`;
+    clickedArray.push(event.target);
+    console.log(clickedArray)
   }
+  if (i >= 2) {
+    if (clickedArray[1].id === clickedArray[2].id ) {
+
+      alert(`You've clicked on the same card! `)
+      event.target.style.backgroundColor = `transparent`;
+      i=0;
+      clickedArray=[0];
+    }else if(clickedArray[1].classList.value === clickedArray[2].classList.value){
+      console.log(`Match!`)
+      i=0;
+      clickedArray=[0];
+    }else{
+      console.log(`Hmmm, try again`)
+      setTimeout(() => {
+        clickedArray[1].style.backgroundColor = "transparent";
+        clickedArray[2].style.backgroundColor = "transparent";
+        i = 0;
+        clickedArray=[0];
+        console.log(`Flipped`)
+      }, 1000)
+    }
+
+  }
+
+
+
+  /*
+    if (i < 2) {
+      firstCard = event.target;
+      firstCard.setAttribute('id', 'clicked');
+      i++
+      console.log(i)
+    }
+  if(i>=2){
+    event.target.style.backgroundColor = event.target.classList;
+    secondCard = event.target;
+    if (firstCard.classList.value == secondCard.classList.value) {
+      if (firstCard.getAttribute('id') == secondCard.getAttribute('id')) {
+        console.log(`You've clicked the same card twice. Try again!`)
+        firstCard.style.backgroundColor = "transparent";
+        secondCard.style.backgroundColor = "transparent";
+        firstCard.removeAttribute('id');
+        secondCard.removeAttribute('id');
+      } else {
+        console.log(`Woah you got it! `)
+
+      }
+    } else {
+      console.log(`Ah, try again!`)
+      setTimeout(() => {
+        firstCard.style.backgroundColor = "transparent";
+        secondCard.style.backgroundColor = "transparent";
+        firstCard.removeAttribute('id');
+        secondCard.removeAttribute('id');
+        i = 0;
+        console.log(`Flipped`)
+      }, 1000)
+    }*/
+
 }
+
 
 // when the DOM loads
 createDivsForColors(shuffledColors);
 
 //restart button
 
-btn.addEventListener('click',()=>{
+btn.addEventListener('click', () => {
   window.location.reload();
 })
