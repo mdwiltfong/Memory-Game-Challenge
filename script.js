@@ -98,42 +98,6 @@ function handleCardClick(event) {
     }
 
   }
-
-
-
-  /*
-    if (i < 2) {
-      firstCard = event.target;
-      firstCard.setAttribute('id', 'clicked');
-      i++
-      console.log(i)
-    }
-  if(i>=2){
-    event.target.style.backgroundColor = event.target.classList;
-    secondCard = event.target;
-    if (firstCard.classList.value == secondCard.classList.value) {
-      if (firstCard.getAttribute('id') == secondCard.getAttribute('id')) {
-        console.log(`You've clicked the same card twice. Try again!`)
-        firstCard.style.backgroundColor = "transparent";
-        secondCard.style.backgroundColor = "transparent";
-        firstCard.removeAttribute('id');
-        secondCard.removeAttribute('id');
-      } else {
-        console.log(`Woah you got it! `)
-
-      }
-    } else {
-      console.log(`Ah, try again!`)
-      setTimeout(() => {
-        firstCard.style.backgroundColor = "transparent";
-        secondCard.style.backgroundColor = "transparent";
-        firstCard.removeAttribute('id');
-        secondCard.removeAttribute('id');
-        i = 0;
-        console.log(`Flipped`)
-      }, 1000)
-    }*/
-
 }
 
 

@@ -19,5 +19,9 @@ body{
 
 button{
   margin-left: 50%;
-  margin-top: 12%;
+  margin-top: 20px;
+}
+h1{
+  text-align: center;
+  margin-bottom: 100px;
 }
