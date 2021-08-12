@@ -1,9 +1,16 @@
+#game{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  max-width: 1165px;
+  margin:0 auto;
+}
 #game div {
   border: 1px solid black;
   width: 15%;
   height: 200px;
   margin: 10px;
-  display: inline-block;
 }
 
 body{
