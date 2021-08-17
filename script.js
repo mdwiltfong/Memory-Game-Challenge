@@ -77,10 +77,12 @@ function handleCardClick(event) {
     console.log(clickedArray)
   }
   if (i >= 2) {
-    if (clickedArray[1].id === clickedArray[2].id ) {
+    if (clickedArray[1].id === clickedArray[2].id  ) {
 
       alert(`You've clicked on the same card! `)
-      event.target.style.backgroundColor = `transparent`;
+      if(!matchedArray.includes(event.target.id)){
+        event.target.style.backgroundColor = `transparent`;
+      }
       i=0;
       clickedArray=[0];
     }else if(clickedArray[1].classList.value === clickedArray[2].classList.value){
