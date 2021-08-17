@@ -17,6 +17,7 @@ let firstCard;
 let secondCard;
 let btn = document.querySelector("button");
 let clickedArray = [0];
+let matchedArray=[];
 // here is a helper function to shuffle an array
 // it returns the same array with values shuffled
 // it is based on an algorithm called Fisher Yates if you want ot research more
@@ -85,18 +86,27 @@ function handleCardClick(event) {
     }else if(clickedArray[1].classList.value === clickedArray[2].classList.value){
       console.log(`Match!`)
       i=0;
+      matchedArray.push(clickedArray[1].id);
+      matchedArray.push(clickedArray[2].id);
       clickedArray=[0];
     }else{
       console.log(`Hmmm, try again`)
-      setTimeout(() => {
-        clickedArray[1].style.backgroundColor = "transparent";
-        clickedArray[2].style.backgroundColor = "transparent";
-        i = 0;
-        clickedArray=[0];
-        console.log(`Flipped`)
-      }, 1000)
-    }
+      
 
+        setTimeout(() => {
+          if(!matchedArray.includes(clickedArray[1].id)){
+            clickedArray[1].style.backgroundColor = "transparent";
+            if(!matchedArray.includes(clickedArray[2].id)){
+              clickedArray[2].style.backgroundColor = "transparent";
+            }
+          } 
+          i = 0;
+          clickedArray=[0];
+          console.log(`Flipped`)
+        }, 1000)
+      }
+    
+      
   }
 }
 
