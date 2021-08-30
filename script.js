@@ -12,6 +12,19 @@ const COLORS = [
   "orange",
   "purple"
 ];
+
+const words=[
+  "pomme",
+  "s'amuser",
+  "regarder",
+  "s'arrête",
+  "m'asseoir",
+  "s'ennuir",
+  "manger",
+  "attendre",
+  "finir",
+  "calibrer"
+]
 let i = 0;
 let firstCard;
 let secondCard;
@@ -42,6 +55,7 @@ function shuffle(array) {
 }
 
 let shuffledColors = shuffle(COLORS);
+shuffledColors=shuffle(words);
 
 // this function loops over the array of colors
 // it creates a new div and gives it a class with the value of the color
@@ -51,7 +65,9 @@ function createDivsForColors(colorArray) {
   for (let color of colorArray) {
     // create a new div
     const newDiv = document.createElement("div");
-
+    const text=document.createElement('p');
+    text.innerText=`${words[j]}`
+    newDiv.append(text);
     // give it a class attribute for the value we are looping over
     newDiv.classList.add(color);
     // call a function handleCardClick when a div is clicked on
